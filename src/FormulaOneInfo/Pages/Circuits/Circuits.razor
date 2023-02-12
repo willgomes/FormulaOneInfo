@@ -1,0 +1,56 @@
+@page "/circuits";
+
+@using FormulaOneInfo.ApplicationCore.Services;
+@using FormulaOneInfo.Components.Circuit
+@using FormulaOneInfo.Shared.Circuit;
+@inject IFormulaOneServiceApi FormulaOneServiceApi;
+@inject NavigationManager UriHelper;
+@inject CircuitStateContainer CircuitState;
+@implements IDisposable;
+
+<MudGrid>
+    <MudItem xs="12" sm="12" md="12" lg="12" xl="12">
+        <MudPaper Class="pa-4 ma-2">
+            <MudText Typo="Typo.h3">Circuits</MudText>
+        </MudPaper>
+    </MudItem>
+
+    @if (Loading)
+    {
+        <CircuitSkeletonCard />
+    }
+    else
+    {
+        @if (CircuitsInfo != null)
+        {
+            @foreach (var circuit in CircuitsInfo)
+            {
+                <MudItem xs="6" sm="4" md="3" lg="3" xl="3">
+                    <MudCard>
+                        <MudCardHeader>
+                            <CardHeaderContent>
+                                <MudText Typo="Typo.body1">@circuit.Name</MudText>
+                                <MudText Typo="Typo.body2">First Grand Prix: @circuit.FirstGrandPrix</MudText>
+                            </CardHeaderContent>
+                        </MudCardHeader>
+                        <MudCardMedia Image="@circuit.Image" Height="250" />
+                        <MudCardContent>
+                            <MudText Typo="Typo.h5">Name: @circuit.Competition.Name</MudText>
+                            <MudText Typo="Typo.body2">Location: @circuit.Competition.Location.Country,
+                                @circuit.Competition.Location.City
+                            </MudText>
+                        </MudCardContent>
+                        <MudCardActions>
+                            <MudButton Variant="Variant.Text" Color="Color.Primary"
+                    OnClick="@(() => ShowCircuitInformation(circuit))">Learn More</MudButton>
+                        </MudCardActions>
+                    </MudCard>
+                </MudItem>
+            }
+        }
+        else
+        {
+            <h1>Deu ruim!!!</h1>
+        }
+    }
+</MudGrid>

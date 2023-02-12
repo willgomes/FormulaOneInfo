@@ -1,0 +1,15 @@
+@for (int i = 0; i <= 3; i++)
+{
+    <MudItem xs="6" sm="4" md="3" lg="3" xl="3">
+        <MudCard>
+            <MudSkeleton SkeletonType="SkeletonType.Rectangle" Height="200px" />
+            <MudCardContent>
+                <MudSkeleton Width="30%" Height="42px;" />
+                <MudSkeleton Width="100%" />
+            </MudCardContent>
+            <MudCardActions>
+                <MudSkeleton Width="105px" Height="40px" Class="ml-3" />
+            </MudCardActions>
+        </MudCard>
+    </MudItem>
+}
