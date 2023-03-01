@@ -1,20 +1,45 @@
 using Microsoft.AspNetCore.Components;
+
 using MudBlazor;
 
 namespace FormulaOneInfo.Pages.Circuits
 {
-    public partial class Circuit
+    public sealed partial class Circuit
     {
-        private ApplicationCore.Models.Circuit.Circuit CircuitDetails { get; set; }
+        [Parameter]
+        public string? CircuitId { get; set; }
+        private ApplicationCore.Models.Circuit.Circuit? CircuitDetails = new();
+        public bool Loading = true;
 
         private readonly List<BreadcrumbItem> _breadcrumbs = new();
 
-        protected override void OnInitialized()
+        protected override async Task OnInitializedAsync()
         {
-            base.OnInitialized();
-            CircuitDetails = CircuitState.Circuit;
+            CircuitDetails = await GetCircuitDetailAsync(CircuitId);
+
             _breadcrumbs.Add(new BreadcrumbItem("Circuits", href: "Circuits"));
             _breadcrumbs.Add(new BreadcrumbItem(CircuitDetails.Name, href: null, disabled: true));
+
+            Loading = false;
+        }
+
+        private async Task<ApplicationCore.Models.Circuit.Circuit?> GetCircuitDetailAsync(string? id)
+        {
+            if (CircuitState?.Circuit is null)
+            {
+                var circuitResult = await FormulaOneServiceApi.GetCircuitAsync(id!);
+
+                return circuitResult?.Circuits?.FirstOrDefault();
+            }
+            else
+            {
+                return CircuitState.Circuit;
+            }
+        }
+
+        public void Dispose()
+        {
+            CircuitState.OnStateChange -= StateHasChanged;
         }
     }
 }
