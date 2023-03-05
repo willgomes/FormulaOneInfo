@@ -13,7 +13,7 @@ namespace FormulaOneInfo.Pages.Circuits
 
         private async Task ListCircuitsAsync()
         {
-            var circuitResult = await FormulaOneServiceApi.GetCircuitsAsync();
+            var circuitResult = await FormulaOneServiceApi.GetCircuitAsync();
             CircuitsInfo.AddRange(circuitResult.Circuits);
         }
 

@@ -7,8 +7,5 @@ using Refit;
 public interface IFormulaOneServiceApi
 {
     [Get("/circuits")]
-    public Task<CircuitRoot> GetCircuitsAsync();
-
-    [Get("/circuits")]
-    public Task<CircuitRoot> GetCircuitAsync([AliasAs("id")] string circuitId);
+    public Task<CircuitRoot> GetCircuitAsync([AliasAs("id")] string? circuitId = null);
 }
