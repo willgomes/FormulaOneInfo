@@ -1,0 +1,53 @@
+@using FormulaOneInfo.ApplicationCore.Services;
+@using FormulaOneInfo.Components.Shared
+@inject IFormulaOneServiceApi FormulaOneServiceApi;
+
+
+@if (_loading)
+{
+    <SkeletonContent />
+}
+else
+{
+    <MudDialog>
+        <TitleContent>
+            <MudText Typo="Typo.h6">
+                @_driver.Name - (@_driver.Abbr @_driver.Number)
+            </MudText>
+        </TitleContent>
+        <DialogContent>
+            <MudGrid>
+                <MudItem xs="3" sm="3" md="3" lg="3" xl="3">
+                    <MudImage Src="@_driver.Image" Alt="@_driver.Name" Elevation="25" Class="rounded-lg" />
+                    <MudText Typo="Typo.body1">
+                        <MudIcon Icon="fa fa-birthday-cake" Color="Color.Dark" /> @_driver.Birthdate
+                    </MudText>
+                </MudItem>
+                <MudItem xs="4" sm="4" md="4" lg="4" xl="4">
+                        <MudText Typo="Typo.body1">Nationality: @_driver.Nationality</MudText>
+                        <MudText Typo="Typo.body1">Country: @(string.IsNullOrEmpty(_driver.Country.Name) ? "" : $"{_driver.Country.Name},") @_driver.Country.Code</MudText>
+                        <MudText Typo="Typo.body1">Grand prix entered: @(_driver.GrandsPrixEntered is null ? "N/A" : _driver.GrandsPrixEntered)</MudText>
+                        <MudText Typo="Typo.body1">World Championships: @(_driver.WorldChampionships is null ? "N/A" : _driver.WorldChampionships)</MudText>
+                        <MudText Typo="Typo.body1">Podiums: @(_driver.Podiums is null ? "N/A" : _driver.Podiums)</MudText>
+                        <MudText Typo="Typo.body1">Highest race finish: @(_driver.HighestRaceFinish.Position is null ? "N/A" : _driver.HighestRaceFinish.Position)</MudText>
+                        <MudText Typo="Typo.body1">Highest grid position: @(_driver.HighestGridPosition is null ? "N/A" : _driver.HighestGridPosition)</MudText>
+                        <MudText Typo="Typo.body1">Carreer points: @(_driver.CareerPoints is null ? "N/A" : _driver.CareerPoints)</MudText>
+                </MudItem>
+                <MudItem xs="5" sm="5" md="5" lg="5" xl="5">
+                    <MudTable Items="@_driver.Constructors" FixedHeader="true" Height="400px">
+                        <HeaderContent>
+                            <MudTh>Season</MudTh>
+                            <MudTh>Team</MudTh>
+                        </HeaderContent>
+                        <RowTemplate>
+                            <MudTd DataLabel="Season">@context.Season</MudTd>
+                            <MudTd DataLabel="Team">
+                                <MudImage Src="@context.Team.Logo" Alt="@context.Team.Name" Elevation="25" Class="rounded-lg" Height="80" Width="160"/>
+                            </MudTd>
+                        </RowTemplate>
+                    </MudTable>
+                </MudItem>
+            </MudGrid>
+        </DialogContent>
+    </MudDialog>
+}
