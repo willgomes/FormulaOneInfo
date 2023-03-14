@@ -25,7 +25,9 @@
         {
             @foreach (var circuit in CircuitsInfo)
             {
-                <MudItem xs="6" sm="4" md="3" lg="3" xl="3">
+                string urlFlags = $"https://flagcdn.com/224x168/{Flags.GetValueOrDefault(circuit.Competition.Location.Country.Trim())}.png";
+
+                <MudItem xs="12" sm="6" md="4" lg="3" xl="3">
                     <MudCard>
                         <MudCardHeader>
                             <CardHeaderContent>
@@ -33,7 +35,7 @@
                                 <MudText Typo="Typo.body2">First Grand Prix: @circuit.FirstGrandPrix</MudText>
                             </CardHeaderContent>
                         </MudCardHeader>
-                        <MudCardMedia Image="@circuit.Image" Height="250" />
+                        <MudCardMedia Image="@urlFlags" Height="224" Width="168"/>
                         <MudCardContent>
                             <MudText Typo="Typo.h5">Name: @circuit.Competition.Name</MudText>
                             <MudText Typo="Typo.body2">Location: @circuit.Competition.Location.Country,
