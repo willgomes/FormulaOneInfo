@@ -25,24 +25,24 @@
                 <MudText Typo="Typo.h3">@CircuitDetails.Name</MudText>
             </MudPaper>
         </MudItem>
-        <MudItem xs="12" sm="12" md="12" lg="12" xl="12">
+        <MudItem xs="12" sm="12" md="6" lg="6" xl="6">
             <div class="d-flex justify-center">
                 <MudImage Src="@CircuitDetails.Image" Height="200" Width="400" Alt="@CircuitDetails.Name" Elevation="25"
                 Class="rounded-lg ma-4" />
             </div>
         </MudItem>
-        <MudItem xs="12" sm="12" md="12" lg="12" xl="12">
-            <MudText Typo="Typo.body1">Location: @CircuitDetails.Competition.Location.Country,
+        <MudItem xs="12" sm="12" md="6" lg="6" xl="6">
+            <MudText Typo="Typo.body1"><strong>Location:</strong> @CircuitDetails.Competition.Location.Country,
                 @CircuitDetails.Competition.Location.City</MudText>
-            <MudText Typo="Typo.body1">First Grand Prix: @CircuitDetails.FirstGrandPrix</MudText>
-            <MudText Typo="Typo.body1">Laps: @CircuitDetails.Laps</MudText>
-            <MudText Typo="Typo.body1">Length: @CircuitDetails.Length</MudText>
-            <MudText Typo="Typo.body1">Race Distance: @CircuitDetails.RaceDistance</MudText>
-            <MudText Typo="Typo.body1">Lap Record:
+            <MudText Typo="Typo.body1"><strong>First Grand Prix:</strong> @CircuitDetails.FirstGrandPrix</MudText>
+            <MudText Typo="Typo.body1"><strong>Laps:</strong> @CircuitDetails.Laps</MudText>
+            <MudText Typo="Typo.body1"><strong>Length:</strong> @CircuitDetails.Length</MudText>
+            <MudText Typo="Typo.body1"><strong>Race Distance:</strong> @CircuitDetails.RaceDistance</MudText>
+            <MudText Typo="Typo.body1"><strong>Lap Record:</strong>
                 <ul>
-                    <li>-> Time: @(string.IsNullOrWhiteSpace(CircuitDetails.LapRecord.Time) ? "N/A" :
+                    <li><strong>- Time:</strong> @(string.IsNullOrWhiteSpace(CircuitDetails.LapRecord.Time) ? "N/A" :
                     CircuitDetails.LapRecord.Time)</li>
-                    <li>-> Driver: 
+                    <li><strong>- Driver:</strong>
                         @if (string.IsNullOrWhiteSpace(CircuitDetails.LapRecord.Driver))
                         {
                             <div>N/A</div>
@@ -54,13 +54,13 @@
                                 @CircuitDetails.LapRecord.Driver</MudButton>
                         }
                     </li>
-                    <li>-> Year: @(string.IsNullOrWhiteSpace(CircuitDetails.LapRecord.Year) ? "N/A" :
+                    <li><strong>- Year:</strong> @(string.IsNullOrWhiteSpace(CircuitDetails.LapRecord.Year) ? "N/A" :
                     CircuitDetails.LapRecord.Year)</li>
                 </ul>
             </MudText>
-            <MudText Typo="Typo.body1">Capacity: @(CircuitDetails.Capacity is null ? "N/A" : CircuitDetails.Capacity)
+            <MudText Typo="Typo.body1"><strong>Capacity:</strong> @(CircuitDetails.Capacity is null ? "N/A" : CircuitDetails.Capacity)
             </MudText>
-            <MudText Typo="Typo.body1">Opened: @(CircuitDetails.Opened is null ? "N/A" : CircuitDetails.Opened)</MudText>
+            <MudText Typo="Typo.body1"><strong>Opened:</strong> @(CircuitDetails.Opened is null ? "N/A" : CircuitDetails.Opened)</MudText>
             </MudItem>
     }
 
