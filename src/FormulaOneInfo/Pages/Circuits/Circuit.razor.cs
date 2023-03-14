@@ -1,3 +1,5 @@
+using FormulaOneInfo.Components.Driver;
+
 using Microsoft.AspNetCore.Components;
 
 using MudBlazor;
@@ -35,6 +37,20 @@ namespace FormulaOneInfo.Pages.Circuits
             {
                 return CircuitState.Circuit;
             }
+        }
+
+        private void OpenDriverDialog(string driverName)
+        {
+            var parameters = new DialogParameters { [nameof(driverName)] = driverName };
+            var dialogOptions = new DialogOptions()
+            {
+                FullWidth = true,
+                MaxWidth = MaxWidth.Medium,
+                CloseButton = true,
+                DisableBackdropClick = true
+            };
+
+            DialogService.Show<DriverDetailsDialog>("Driver", parameters, dialogOptions);
         }
 
         public void Dispose()

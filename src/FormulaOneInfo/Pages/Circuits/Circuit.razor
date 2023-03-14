@@ -3,9 +3,10 @@
 @inject CircuitStateContainer CircuitState;
 @using FormulaOneInfo.ApplicationCore.Services;
 @inject IFormulaOneServiceApi FormulaOneServiceApi;
+@inject IDialogService DialogService
 @implements IDisposable;
 
-@using FormulaOneInfo.Components.Circuit
+@using FormulaOneInfo.Components.Shared
 @using FormulaOneInfo.Shared.Circuit;
 
 <MudGrid>
@@ -15,7 +16,7 @@
 
     @if (Loading)
     {
-        <CircuitSkeletonDetails />
+        <SkeletonContent />
     }
     else
     {
@@ -41,8 +42,18 @@
                 <ul>
                     <li>-> Time: @(string.IsNullOrWhiteSpace(CircuitDetails.LapRecord.Time) ? "N/A" :
                     CircuitDetails.LapRecord.Time)</li>
-                    <li>-> Driver: @(string.IsNullOrWhiteSpace(CircuitDetails.LapRecord.Driver) ? "N/A" :
-                    CircuitDetails.LapRecord.Driver)</li>
+                    <li>-> Driver: 
+                        @if (string.IsNullOrWhiteSpace(CircuitDetails.LapRecord.Driver))
+                        {
+                            <div>N/A</div>
+                        }
+                        else
+                        {
+                            <MudButton Variant="Variant.Text" Color="Color.Info"
+                        OnClick="@((e) => OpenDriverDialog(CircuitDetails.LapRecord.Driver))">
+                                @CircuitDetails.LapRecord.Driver</MudButton>
+                        }
+                    </li>
                     <li>-> Year: @(string.IsNullOrWhiteSpace(CircuitDetails.LapRecord.Year) ? "N/A" :
                     CircuitDetails.LapRecord.Year)</li>
                 </ul>
@@ -50,7 +61,7 @@
             <MudText Typo="Typo.body1">Capacity: @(CircuitDetails.Capacity is null ? "N/A" : CircuitDetails.Capacity)
             </MudText>
             <MudText Typo="Typo.body1">Opened: @(CircuitDetails.Opened is null ? "N/A" : CircuitDetails.Opened)</MudText>
-        </MudItem>
+            </MudItem>
     }
 
 </MudGrid>
