@@ -8,7 +8,4 @@ The project has a page called Circuits that lists all the circuits, a page that 
 
 The project structure is based on the [Common web application architecture](https://learn.microsoft.com/en-us/dotnet/architecture/modern-web-apps-azure/common-web-application-architectures), which provides a clean and modular organization for web applications, even though this project is very simple.
 
-<video width="1024" height="768" controls>
-  <source src="demo/Demo1.mp4" type="video/mp4">
-</video>
-
+<iframe width="560" height="315" src="https://www.youtube.com/embed/2-sLUtycyZ0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
